@@ -10,7 +10,7 @@ use Carp ();
 use Encode ();
 use Encode::Guess;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 sub decode {
@@ -21,10 +21,10 @@ sub decode {
     if ( ref $encoding ) {
         my $enc = Encode::Guess::guess_encoding( $str, @$encoding );
         $enc = $self->find_encoding( $encoding->[0] ) unless ref $enc;
-        return $enc->decode( $str );
+        return $enc->decode( $str, $self->decode_check_value );
     }
 
-    $self->find_encoding( $encoding )->decode( $str );
+    $self->find_encoding( $encoding )->decode( $str, $self->decode_check_value );
 }
 
 
@@ -35,13 +35,13 @@ sub decode_fields_ref {
         for ( @$arrayref ) {
             my $enc = Encode::Guess::guess_encoding( $_, @$encoding );
             $enc = $self->find_encoding( $encoding->[0] ) unless ref $enc;
-            $_ = $enc->decode( $_ );
+            $_ = $enc->decode( $_, $self->decode_check_value );
         }
     }
     else {
         my $enc = $self->find_encoding( $encoding ) || return;
         for ( @$arrayref ) {
-            $_ = $enc->decode( $_ );
+            $_ = $enc->decode( $_, $self->decode_check_value );
         }
     }
 
@@ -128,7 +128,7 @@ Makamaka Hannyaharamitu, E<lt>makamaka[at]cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008 by Makamaka Hannyaharamitu
+Copyright 2008-2010 by Makamaka Hannyaharamitu
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 
