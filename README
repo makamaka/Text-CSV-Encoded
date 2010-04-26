@@ -1,7 +1,7 @@
 Text::CSV::Encoded
 ========================
 
-Encoding aware Text::CSV
+encoding-handling Text::CSV
 
 INSTALLATION
 

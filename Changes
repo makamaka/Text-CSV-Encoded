@@ -1,5 +1,11 @@
 Revision history for Perl extension Text::CSV::Encoded.
 
+0.10  Mon Apr 26 17:41:12 2010
+	[Text::CSV::Encoded::Coder::*]
+	- coder class can accept check value.
+	  ex. $csv->coder->encode_check_value( Encode::FB_PERLQQ );
+	      $csv->coder->decode_check_value( Encode::FB_PERLQQ );
+
 0.09  Fri Oct  9 16:56:43 2009
 	- requires Text::CSV 1.12 or later.
 
