@@ -3,7 +3,7 @@ package Text::CSV::Encoded::Coder::Base;
 use strict;
 
 BEGIN {
-    $Text::CSV::Encoded::Coder::Base::VERSION = '0.01';
+    $Text::CSV::Encoded::Coder::Base::VERSION = '0.02';
 }
 
 sub new {
@@ -34,6 +34,18 @@ sub decode_fields_ref {
 
 sub encode_fields_ref {
     my ( $self, $encoding, $arrayref ) = @_;
+}
+
+
+sub encode_check_value {
+    $_[0]->{ encode_check_value } = $_[1] if @_ > 1;
+    $_[0]->{ encode_check_value } || 0;
+}
+
+
+sub decode_check_value {
+    $_[0]->{ decode_check_value } = $_[1] if @_ > 1;
+    $_[0]->{ decode_check_value } || 0;
 }
 
 
@@ -121,6 +133,18 @@ In Perl 5.8 or later, it is expected to do C<utf8::upgrade> against $str.
 In older versions, this method may be meaningless and there is no need to implement.
 See to L<utf8>.
 
+=head2 encode_check_value
+
+Setter/Getter for an argument passing to encode.
+
+    $coder->encode_check_value( Encode::FB_PERLQQ );
+
+=head2 decode_check_value
+
+Setter/Getter for an argument passing to decode.
+
+    $coder->encode_check_value( Encode::FB_PERLQQ );
+
 =head1 EXAMPLE
 
 Use with L<Jcode>.
@@ -179,7 +203,7 @@ Makamaka Hannyaharamitu, E<lt>makamaka[at]cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008 by Makamaka Hannyaharamitu
+Copyright 2008-2010 by Makamaka Hannyaharamitu
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 

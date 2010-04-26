@@ -4,7 +4,7 @@ use strict;
 use vars  qw( $VERSION );
 use Carp ();
 
-$VERSION = '0.09';
+$VERSION = '0.10';
 
 BEGIN {
     require Text::CSV;
@@ -289,6 +289,10 @@ Text::CSV::Encoded - Encoding aware Text::CSV.
 
     $uni_columns = $csv->decode( 'euc-jp', $line );         # euc-jp => unicode
     $line        = $csv->encode( 'euc-jp', $uni_columns );  # unicode => euc-jp
+
+    # pass check value to coder class
+    $csv->coder->encode_check_value( Encode::FB_PERLQQ );
+
 
 =head1 DESCRIPTION
 
@@ -627,7 +631,7 @@ He and Juerd advised me many points about documents and sources.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008-2009 by Makamaka Hannyaharamitu
+Copyright 2008-2010 by Makamaka Hannyaharamitu
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
