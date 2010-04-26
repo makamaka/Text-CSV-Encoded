@@ -1,0 +1,23 @@
+--- #YAML:1.0
+name:               Text-CSV-Encoded
+version:            0.09
+abstract:           Encoding aware Text::CSV.
+author:
+    - Makamaka Hannyaharamitu, E<lt>makamaka[at]cpan.orgE<gt>
+license:            perl
+distribution_type:  module
+configure_requires:
+    ExtUtils::MakeMaker:  0
+requires:
+    IO::Handle:     0
+    Test::Harness:  0
+    Test::More:     0
+    Text::CSV:      1.12
+no_index:
+    directory:
+        - t
+        - inc
+generated_by:       ExtUtils::MakeMaker version 6.48
+meta-spec:
+    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
+    version:  1.4
