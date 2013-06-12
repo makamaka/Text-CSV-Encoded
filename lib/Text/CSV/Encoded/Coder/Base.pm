@@ -3,12 +3,13 @@ package Text::CSV::Encoded::Coder::Base;
 use strict;
 
 BEGIN {
-    $Text::CSV::Encoded::Coder::Base::VERSION = '0.02';
+    $Text::CSV::Encoded::Coder::Base::VERSION = '0.03';
 }
 
 sub new {
     my $class = shift;
-    bless {}, $class;
+    my %opt   = @_;
+    bless { %opt }, $class;
 }
 
 
@@ -203,7 +204,7 @@ Makamaka Hannyaharamitu, E<lt>makamaka[at]cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008-2010 by Makamaka Hannyaharamitu
+Copyright 2008-2013 by Makamaka Hannyaharamitu
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 

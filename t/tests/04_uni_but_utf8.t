@@ -12,6 +12,6 @@ ok( !$@ );
 
 eval q| $csv->decode('utf8', "あいうえお") |;
 
-ok( $@ );
+ok( $csv->automatic_UTF8 ? 1 : $@ );
 
 1;

@@ -10,7 +10,7 @@ use Carp ();
 use Encode ();
 use Encode::Guess;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 
 sub decode {
@@ -128,7 +128,7 @@ Makamaka Hannyaharamitu, E<lt>makamaka[at]cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008-2010 by Makamaka Hannyaharamitu
+Copyright 2008-2013 by Makamaka Hannyaharamitu
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 

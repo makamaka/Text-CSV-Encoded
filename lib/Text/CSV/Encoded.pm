@@ -4,12 +4,21 @@ use strict;
 use vars  qw( $VERSION );
 use Carp ();
 
-$VERSION = '0.10';
+$VERSION = '0.20';
+
 
 BEGIN {
     require Text::CSV;
     if ( Text::CSV->VERSION < 1.06 ) {
         Carp::croak "Base class Text::CSV version is less than 1.06.";
+    }
+    my $backend = Text::CSV->backend;
+    my $version = Text::CSV->backend->VERSION;
+    if ( ( $backend =~ /XS/ and $version >= 0.99 ) or ( $backend =~ /PP/ and $version >= 1.30 ) ) {
+        eval q/ sub automatic_UTF8 { 1; } /; # parse/getline return strings (UNICODE)
+    }
+    else {
+        eval q/ sub automatic_UTF8 { 0; } /;
     }
 }
 
@@ -224,7 +233,7 @@ BEGIN {
 
 sub coder {
     my $self = shift;
-    $self->{coder} ||= $self->coder_class->new( @_ );
+    $self->{coder} ||= $self->coder_class->new( automatic_UTF8 => $self->automatic_UTF8, @_ );
 }
 
 
@@ -522,6 +531,13 @@ Returns the coder class name. See to L</CODER CLASS>.
 
 Returns a coder object.
 
+=head2 automtic_UTF8
+
+In L<Text::CSV_XS> version 0.99 and L<Text::CSV_PP> version 1.30 or later,
+They return UNICODE stinrgs in case of parsing utf8 encoded text.
+Backend module has that feature, automatic_UTF8 returns true.
+(This method is for internal code.)
+
 =head1 CODER CLASS
 
 Text::CSV::Encoded delegates the encoding converting process to another module.
@@ -631,7 +647,7 @@ He and Juerd advised me many points about documents and sources.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008-2010 by Makamaka Hannyaharamitu
+Copyright 2008-2013 by Makamaka Hannyaharamitu
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

@@ -83,7 +83,9 @@ $csv->encoding( 'utf8' );
 while( 1 ) {
     my $row = $csv->getline( $fh );
     $csv->eof and last;
-    is( $row->[0], $checker->getline( $fh2 )->[1] );
+    my $string = $checker->getline( $fh2 )->[1];
+    $string = encode_utf8( $string ) if ( $csv->automatic_UTF8 );
+    is( $row->[0], $string );
 }
 
 close($fh);

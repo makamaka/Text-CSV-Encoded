@@ -1,5 +1,8 @@
 Revision history for Perl extension Text::CSV::Encoded.
 
+0.20  Wed Jun 12 13:18:02 2013
+	- update modules and test for Text::CSV_XS 0.99 and Text::CSV_PP 1.30
+
 0.10  Mon Apr 26 17:41:12 2010
 	[Text::CSV::Encoded::Coder::*]
 	- coder class can accept check value.
