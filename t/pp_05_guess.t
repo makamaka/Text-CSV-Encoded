@@ -9,7 +9,7 @@ use lib qw(./t);
 use _setup;
 
 BEGIN {
-    _setup->tests(6);
+    _setup->tests(8);
 }
 
 

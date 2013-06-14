@@ -26,5 +26,11 @@ is( join('', $csv->fields), 'これはEUC-JP' );
 ok( $csv->parse( Encode::encode('shiftjis', 'これはShift_JIS') ) );
 is( join('', $csv->fields), 'これはShift_JIS' );
 
+
+$csv->encoding( ['utf-8', 'cp1252'] );
+$csv->encoding_out( 'utf-8' );
+ok( $csv->combine(map {Encode::encode('utf-8', $_)} qw(cow says… möo)) );
+is( $csv->string, Encode::encode('utf-8', 'cow,"says…",möo'));
+
 1;
 
