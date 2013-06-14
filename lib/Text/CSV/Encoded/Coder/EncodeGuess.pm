@@ -35,6 +35,7 @@ sub decode_fields_ref {
         for ( @$arrayref ) {
             my $enc = Encode::Guess::guess_encoding( $_, @$encoding );
             $enc = $self->find_encoding( $encoding->[0] ) unless ref $enc;
+            next if ($enc->name() eq 'utf8' and $self->{automatic_UTF8});
             $_ = $enc->decode( $_, $self->decode_check_value );
         }
     }
