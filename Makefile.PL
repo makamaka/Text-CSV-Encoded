@@ -11,13 +11,15 @@ WriteMakefile(
     'VERSION_FROM'	=> 'lib/Text/CSV/Encoded.pm', # finds $VERSION
     'PREREQ_PM' => {
         'IO::Handle'    => 0,
+        'Text::CSV'     => 1.30,
+    },
+    'TEST_REQUIRES' => {
         'Test::More'    => 0,
         'Test::Harness' => 0,
-        'Text::CSV'     => 1.30,
     },
     ($] >= 5.005 ?    ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM => 'lib/Text/CSV/Encoded.pm', # retrieve abstract from module
-       AUTHOR     => 'Makamaka Hannyaharamitu, E<lt>makamaka[at]cpan.orgE<gt>') : ()),
+       AUTHOR     => 'Makamaka Hannyaharamitu, <makamaka[at]cpan.org>') : ()),
 
     ( $ExtUtils::MakeMaker::VERSION >= 6.3002 ? ('LICENSE' => 'perl', ) : () ),
 
